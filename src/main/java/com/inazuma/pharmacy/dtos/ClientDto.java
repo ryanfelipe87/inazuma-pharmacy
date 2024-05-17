@@ -1,30 +1,18 @@
-package com.inazuma.pharmacy.models;
+package com.inazuma.pharmacy.dtos;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Client {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ClientDto {
     private Long id;
-
-    @Column
     private String name;
-
-    @Column
     private String cpf;
-
-    @Column
     private String email;
-
-    @Column
     private String password;
 }
