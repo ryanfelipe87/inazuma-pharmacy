@@ -1,6 +1,7 @@
 package com.inazuma.pharmacy.services;
 
 import com.inazuma.pharmacy.dtos.ClientDto;
+import com.inazuma.pharmacy.exceptions.NotFoundException;
 import com.inazuma.pharmacy.models.Client;
 import com.inazuma.pharmacy.repositories.ClientRepository;
 import org.springframework.beans.BeanUtils;
@@ -29,6 +30,19 @@ public class ClientService {
         return clientList.stream()
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
+    }
+
+    public ClientDto findById(Long id){
+        Client client = clientRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Client not found with this ID: " + id));
+
+        return convertToDto(client);
+    }
+
+    public ClientDto findClientByName(String name){
+        Client client = new Client();
+        client = clientRepository.findByName(name);
+        return convertToDto(client);
     }
 
     private ClientDto convertToDto(Client client){

@@ -26,4 +26,14 @@ public class ClientController {
     public List<ClientDto> listAll(){
         return clientService.listAll();
     }
+
+    @GetMapping(path = "/users/{id}")
+    public ClientDto findClientById(@PathVariable Long id){
+        return clientService.findById(id);
+    }
+
+    @GetMapping(path = "/{name}")
+    public ClientDto findByName(@PathVariable String name){
+        return clientService.findClientByName(name);
+    }
 }
